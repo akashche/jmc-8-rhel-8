@@ -39,7 +39,6 @@ import java.util.logging.Logger;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.jface.resource.ResourceLocator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.openjdk.jmc.common.io.IOToolkit;
 import org.openjdk.jmc.rcp.application.p2.AddRepositoriesJob;
@@ -144,6 +143,6 @@ public class ApplicationPlugin extends AbstractUIPlugin {
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
-		return ResourceLocator.imageDescriptorFromBundle(PLUGIN_ID, path).orElse(null);
+		return AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 }

@@ -38,7 +38,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.resource.ResourceLocator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.graphics.Image;
@@ -46,6 +45,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.openjdk.jmc.common.IState;
 import org.openjdk.jmc.common.IWritableState;
 import org.openjdk.jmc.common.item.Aggregators;
@@ -98,8 +98,8 @@ public class JfxPage extends AbstractDataPage {
 
 		@Override
 		public ImageDescriptor getImageDescriptor(IState state) {
-			return ResourceLocator.imageDescriptorFromBundle("org.openjdk.jmc.flightrecorder.ext.jfx", //$NON-NLS-1$
-					"icons/pulse.png").orElse(null); //$NON-NLS-1$
+			return AbstractUIPlugin.imageDescriptorFromPlugin("org.openjdk.jmc.flightrecorder.ext.jfx", //$NON-NLS-1$
+					"icons/pulse.png"); //$NON-NLS-1$
 		}
 
 		@Override

@@ -34,7 +34,8 @@ package org.openjdk.jmc.ui.misc;
 
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.resource.ResourceLocator;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+
 import org.openjdk.jmc.ui.common.resource.IImageResource;
 import org.openjdk.jmc.ui.common.resource.Resource;
 import org.openjdk.jmc.ui.common.util.AdapterUtil;
@@ -49,8 +50,7 @@ public class ImageDescriptorAdapterFactory implements IAdapterFactory {
 			if (imageResource != null) {
 				Resource r = imageResource.getImageResource();
 				if (r != null) {
-					return adapterType.cast(ResourceLocator
-							.imageDescriptorFromBundle(r.getPluginId(), r.getResourcePath()).orElse(null));
+					return adapterType.cast(AbstractUIPlugin.imageDescriptorFromPlugin(r.getPluginId(), r.getResourcePath()));
 				}
 			}
 			IGraphical g = AdapterUtil.getAdapter(adaptableObject, IGraphical.class);

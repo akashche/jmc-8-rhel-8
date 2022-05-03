@@ -43,7 +43,6 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.resource.ResourceLocator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -54,6 +53,7 @@ import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.IMessageManager;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.Form;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.openjdk.jmc.console.ui.ConsolePlugin;
 import org.openjdk.jmc.console.ui.editor.IConsolePageContainer;
 import org.openjdk.jmc.console.ui.editor.IConsolePageStateHandler;
@@ -175,7 +175,7 @@ public class ConsoleFormPage extends FormPage implements IConsolePageContainer {
 		String iconName = config.getAttribute(ATTRIBUTE_ICON);
 		if (iconName != null) {
 			String pluginId = config.getDeclaringExtension().getContributor().getName();
-			ImageDescriptor iconDesc = ResourceLocator.imageDescriptorFromBundle(pluginId, iconName).orElse(null);
+			ImageDescriptor iconDesc = AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, iconName);
 			if (iconDesc != null) {
 				icon = (Image) JFaceResources.getResources().get(iconDesc);
 			} else {
