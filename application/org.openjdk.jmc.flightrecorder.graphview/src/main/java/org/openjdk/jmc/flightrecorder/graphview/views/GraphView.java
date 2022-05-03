@@ -85,18 +85,7 @@ import org.openjdk.jmc.ui.misc.DisplayToolkit;
 public class GraphView extends ViewPart implements ISelectionListener {
 	private static final String HTML_PAGE;
 	static {
-		String jsD3V5 = "jslibs/d3.v5.min.js";
-		String jsGraphviz = "jslibs/index.js";
-		String wasmGraphviz = "jslibs/graphvizlib.wasm";
-		String jsGraphizD3 = "jslibs/d3-graphviz.js";
-
-		String wasmBase64 = loadBase64FromFile(wasmGraphviz);
-
-		HTML_PAGE = String.format(loadStringFromFile("page.template"), loadLibraries(jsD3V5),
-				// we inline base64 wasm in the library code to avoid fetching it at runtime
-				loadStringFromFile(jsGraphviz, "wasmBinaryFile=\"graphvizlib.wasm\";",
-						"wasmBinaryFile=dataURIPrefix + '" + wasmBase64 + "';"),
-				loadLibraries(jsGraphizD3));
+        HTML_PAGE = String.format(loadStringFromFile("page.template"));
 	}
 
 	private enum ModelState {
