@@ -74,7 +74,6 @@
 							<rootFolders>
 								<win32>${productName}</win32>
 								<macosx>${productName}.app</macosx>
-								<linux>${productName}</linux>
 							</rootFolders>
 						</product>
 					</products>
