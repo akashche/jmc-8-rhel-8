@@ -52,15 +52,7 @@
          version="0.0.0"/>
 
    <includes
-         id="org.openjdk.jmc.feature.rcp.ja"
-         version="0.0.0"/>
-
-   <includes
          id="org.openjdk.jmc.feature.core"
-         version="0.0.0"/>
-
-   <includes
-         id="org.openjdk.jmc.feature.rcp.zh_CN"
          version="0.0.0"/>
 
    <includes
@@ -104,24 +96,6 @@
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.openjdk.jmc.rcp.application.ja"
-         nl="ja_JP,ja"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="org.openjdk.jmc.rcp.application.zh_CN"
-         nl="zh_CN"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
    <plugin
