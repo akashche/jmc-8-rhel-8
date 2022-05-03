@@ -61,7 +61,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.jface.action.Action;
@@ -120,27 +119,17 @@ public class FlameGraphView extends ViewPart implements ISelectionListener {
 	private static final String TOOLTIP_DESCRIPTION = getFlameviewMessage(FLAMEVIEW_SELECT_HTML_TOOLTIP_DESCRIPTION);
 	private static final String HTML_PAGE;
 	static {
-		// from: https://cdn.jsdelivr.net/npm/d3-flame-graph@4.0.6/dist/d3-flamegraph.css
-		String cssD3Flamegraph = "jslibs/d3-flamegraph.css";
-		// from: https://d3js.org/d3.v6.min.js
-		String jsD3V6 = "jslibs/d3.v6.min.js";
-		// from: https://cdn.jsdelivr.net/npm/d3-flame-graph@4.0.6/dist/d3-flamegraph-tooltip.js
-		String jsD3Tip = "jslibs/d3-flamegraph-tooltip.js";
-		// from: https://cdn.jsdelivr.net/npm/d3-flame-graph@4.0.6/dist/d3-flamegraph.js
-		String jsD3FlameGraph = "jslibs/d3-flamegraph.js";
-		// jmc flameview coloring, tooltip and other  functions
 		String jsFlameviewName = "flameview.js";
 		String cssFlameview = "flameview.css";
 
-		String jsD3 = loadLibraries(jsD3V6, jsD3FlameGraph, jsD3Tip);
-		String styleheets = loadLibraries(cssD3Flamegraph, cssFlameview);
+		String styleheets = fileContent(cssFlameview);
 		String jsFlameviewColoring = fileContent(jsFlameviewName);
 
 		String magnifierIcon = getIconBase64(ImageConstants.ICON_MAGNIFIER);
 
 		// formatter arguments for the template: %1 - CSSs stylesheets,
-		// %2 - Search Icon Base64, %3 - 3rd party scripts, %4 - Flameview Coloring,
-		HTML_PAGE = String.format(fileContent("page.template"), styleheets, magnifierIcon, jsD3, jsFlameviewColoring);
+		// %2 - Search Icon Base64, %3 - Flameview Coloring,
+		HTML_PAGE = String.format(fileContent("page.template"), styleheets, magnifierIcon, jsFlameviewColoring);
 	}
 
 	private static final int MODEL_EXECUTOR_THREADS_NUMBER = 3;
@@ -487,14 +476,6 @@ public class FlameGraphView extends ViewPart implements ISelectionListener {
 			// noop : model calculation is canceled when is still running
 		} catch (InterruptedException | ExecutionException | IOException e) {
 			FlightRecorderUI.getDefault().getLogger().log(Level.SEVERE, "Failed to save flame graph", e); //$NON-NLS-1$
-		}
-	}
-
-	private static String loadLibraries(String ... libs) {
-		if (libs == null || libs.length == 0) {
-			return "";
-		} else {
-			return Stream.of(libs).map(FlameGraphView::fileContent).collect(Collectors.joining("\n"));
 		}
 	}
 
