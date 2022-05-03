@@ -146,11 +146,4 @@
 		</plugins>
 		<directory>../../target/</directory>
 	</build>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>buchen-maven-repo</id>
-			<url>http://buchen.github.io/maven-repo</url>
-			<layout>default</layout>
-		</pluginRepository>
-	</pluginRepositories>
 </project>
